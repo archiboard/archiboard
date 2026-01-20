@@ -9,7 +9,7 @@ export default function Home() {
         <div className="text-2xl font-semibold text-black">ArchiBoard</div>
         <Link href="/dashboard">
           <Button variant="outline" className="border-gray-300">
-            Войти
+            Sign In
           </Button>
         </Link>
       </header>
@@ -17,14 +17,14 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center min-h-[60vh] px-8 text-center">
         <h1 className="text-5xl font-semibold text-black mb-4 max-w-3xl">
-          Управление дизайн-проектами
+          Manage Design Projects without Chaos
         </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-          Сметы, комплектация и база поставщиков. Без хаоса.
+          Estimates, procurement, and supplier database in one place.
         </p>
         <Link href="/dashboard">
           <Button size="lg" className="bg-black text-white hover:bg-gray-800">
-            Начать бесплатно
+            Get Started for Free
           </Button>
         </Link>
       </section>
@@ -35,30 +35,30 @@ export default function Home() {
           {/* Feature Card 1 */}
           <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="text-xl font-semibold text-black mb-2">
-              Быстрые сметы
+              Instant Estimates
             </h3>
             <p className="text-gray-600">
-              Автоматический подсчет бюджета.
+              Automatic budget calculation.
             </p>
           </div>
 
           {/* Feature Card 2 */}
           <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="text-xl font-semibold text-black mb-2">
-              База поставщиков
+              Supplier Database
             </h3>
             <p className="text-gray-600">
-              Все контакты и каталоги в одном месте.
+              All contacts and catalogs in one place.
             </p>
           </div>
 
           {/* Feature Card 3 */}
           <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="text-xl font-semibold text-black mb-2">
-              CRM для клиентов
+              Client CRM
             </h3>
             <p className="text-gray-600">
-              История переписки и согласований.
+              Communication history and approvals.
             </p>
           </div>
         </div>
@@ -68,13 +68,13 @@ export default function Home() {
       <footer className="px-8 py-8 border-t border-gray-200 mt-16">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-gray-500 text-sm mb-2">
-            © 2025 ArchiBoard. Сделано для дизайнеров.
+            © 2025 ArchiBoard. Built for Designers.
           </p>
           <a
             href="#"
             className="text-gray-500 text-sm hover:text-gray-700 underline"
           >
-            Политика конфиденциальности
+            Privacy Policy
           </a>
         </div>
       </footer>

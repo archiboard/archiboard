@@ -1,79 +1,58 @@
-import Link from "next/link";
+'use client';
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { LayoutDashboard, Users, Book, FileText, Settings } from 'lucide-react';
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  
+  // Check if we're inside a specific project (has ID in path)
+  // For example: /dashboard/projects/5
+  // Then hide the global menu so the project page renders its own.
+  const isProjectPage = pathname.includes('/dashboard/projects/');
+
   return (
-    <div className="flex min-h-screen bg-white">
-      {/* Sidebar */}
-      <aside className="w-[250px] bg-gray-50 border-r border-gray-200 flex flex-col fixed h-screen">
-        {/* Logo */}
-        <div className="px-6 py-6 border-b border-gray-200">
-          <Link href="/dashboard" className="text-xl font-semibold text-black cursor-pointer">
-            ArchiBoard
-          </Link>
-        </div>
-
-        {/* Menu Items */}
-        <nav className="flex-1 px-4 py-6">
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="/dashboard"
-                className="block px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
-              >
-                Проекты
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/dashboard/contacts"
-                className="block px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-md transition-colors cursor-pointer"
-              >
-                Контакты
-              </Link>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
-              >
-                Каталог
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 text-gray-900 hover:bg-gray-100 rounded-md transition-colors"
-              >
-                Сметы
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        {/* User Profile */}
-        <div className="px-4 py-4 border-t border-gray-200">
-          <div className="flex items-center gap-3 px-2">
-            <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 text-sm font-medium">
-              А
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium text-gray-900 truncate">
-                Имя Пользователя
-              </div>
-            </div>
+    <div className="flex h-screen bg-gray-50">
+      {/* Render global menu ONLY if we're NOT in a project */}
+      {!isProjectPage && (
+        <aside className="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
+          <div className="p-6">
+            <h1 className="text-2xl font-bold text-gray-800">ArchiBoard</h1>
           </div>
-        </div>
-      </aside>
+          
+          <nav className="flex-1 px-4 space-y-2">
+            <Link href="/dashboard" className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              <LayoutDashboard size={20} />
+              <span className="font-medium">Projects</span>
+            </Link>
+            <Link href="/dashboard/contacts" className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              <Users size={20} />
+              <span className="font-medium">Contacts</span>
+            </Link>
+            <Link href="/dashboard/catalog" className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              <Book size={20} />
+              <span className="font-medium">Catalog</span>
+            </Link>
+            <Link href="/dashboard/estimates" className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+              <FileText size={20} />
+              <span className="font-medium">Estimates</span>
+            </Link>
+          </nav>
 
-      {/* Main Content Area */}
-      <main className="flex-1 ml-[250px] flex flex-col min-h-screen">
+          <div className="p-4 border-t border-gray-200">
+             <div className="flex items-center gap-3 px-4 py-3 text-gray-600">
+                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">N</div>
+                <div className="text-sm font-medium">User Name</div>
+             </div>
+          </div>
+        </aside>
+      )}
+
+      {/* Main content */}
+      <main className="flex-1 overflow-auto">
         {children}
       </main>
     </div>
   );
 }
-
