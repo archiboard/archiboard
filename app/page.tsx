@@ -7,7 +7,7 @@ export default function Home() {
       {/* Header */}
       <header className="flex items-center justify-between px-8 py-6 border-b border-gray-200">
         <div className="text-2xl font-semibold text-black">ArchiBoard</div>
-        <Link href="/dashboard">
+        <Link href="/auth">
           <Button variant="outline" className="border-gray-300">
             Sign In
           </Button>
@@ -18,11 +18,11 @@ export default function Home() {
       <section className="flex flex-col items-center justify-center min-h-[60vh] px-8 text-center">
         <h1 className="text-5xl font-semibold text-black mb-4 max-w-3xl">
           Manage Design Projects without Chaos
-        </h1>
+          </h1>
         <p className="text-xl text-gray-600 mb-8 max-w-2xl">
           Estimates, procurement, and supplier database in one place.
         </p>
-        <Link href="/dashboard">
+        <Link href="/auth">
           <Button size="lg" className="bg-black text-white hover:bg-gray-800">
             Get Started for Free
           </Button>
@@ -59,7 +59,7 @@ export default function Home() {
             </h3>
             <p className="text-gray-600">
               Communication history and approvals.
-            </p>
+          </p>
           </div>
         </div>
       </section>
@@ -70,12 +70,20 @@ export default function Home() {
           <p className="text-gray-500 text-sm mb-2">
             © 2025 ArchiBoard. Built for Designers.
           </p>
-          <a
-            href="#"
-            className="text-gray-500 text-sm hover:text-gray-700 underline"
-          >
-            Privacy Policy
-          </a>
+          <div className="flex items-center justify-center gap-4">
+            <Link
+              href="/legal/privacy"
+              className="text-gray-500 text-sm hover:text-gray-700 underline"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/legal/terms"
+              className="text-gray-500 text-sm hover:text-gray-700 underline"
+            >
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </footer>
     </div>
