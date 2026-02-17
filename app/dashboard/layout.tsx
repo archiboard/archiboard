@@ -1,12 +1,20 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, Users, Book, FileText, Settings } from 'lucide-react';
+import { LayoutDashboard, Users, Book, FileText, LogOut } from 'lucide-react';
+import { createClient } from '@/lib/supabaseClient';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push('/login');
+  };
+
   // Check if we're inside a specific project (has ID in path)
   // For example: /dashboard/projects/5
   // Then hide the global menu so the project page renders its own.
@@ -45,6 +53,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">N</div>
                 <div className="text-sm font-medium">User Name</div>
              </div>
+             <button
+               onClick={handleSignOut}
+               className="flex items-center gap-3 px-4 py-3 w-full text-left text-red-500 hover:bg-red-50 rounded-lg transition-colors mt-2"
+             >
+               <LogOut size={20} />
+               <span className="font-medium">Log Out</span>
+             </button>
           </div>
         </aside>
       )}

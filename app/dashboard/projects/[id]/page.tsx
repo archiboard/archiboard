@@ -27,7 +27,8 @@ import {
   Search,
   X,
   Pencil,
-  ExternalLink
+  ExternalLink,
+  LogOut
 } from 'lucide-react';
 import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import jsPDF from 'jspdf';
@@ -79,6 +80,11 @@ export default function ProjectPage() {
   );
   
   const projectId = params.id;
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.push('/login');
+  };
 
   // --- State ---
   const [rooms, setRooms] = useState<Room[]>([]);
@@ -1003,11 +1009,14 @@ export default function ProjectPage() {
                 </div>
             </div>
 
-            {/* Catalog Link (Bottom) */}
+            {/* Catalog Link & Log Out (Bottom) */}
             <div className="mt-auto px-3 pb-4 pt-4 border-t">
                 <div className="px-3 mb-2 text-xs font-semibold text-gray-400 uppercase">Resources</div>
                 <button onClick={() => router.push('/dashboard/catalog')} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-md">
                     <Book size={18} /> Catalog
+                </button>
+                <button onClick={handleSignOut} className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-red-500 hover:bg-red-50 rounded-md mt-2">
+                    <LogOut size={18} /> Log Out
                 </button>
             </div>
         </div>
