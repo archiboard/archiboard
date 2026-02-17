@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const handleSignOut = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push('/login');
+    router.push('/');
   };
 
   // Check if we're inside a specific project (has ID in path)
